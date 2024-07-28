@@ -1,10 +1,8 @@
 const express = require('express');
 
-const {ServerConfig,  Logger} = require('./config');
+const {ServerConfig} = require('./config');
 
 const apiRoutes = require('./routes');
-const { config } = require('dotenv');
-const { json } = require('sequelize');
 
 const app = express();
 
@@ -13,6 +11,8 @@ app.use(express.urlencoded({extended:true}));
 
 app.use('/api', apiRoutes);
 
-app.listen(ServerConfig.PORT,async () =>{
-    console.log(`succesfully started the server ${ServerConfig.PORT}`);
+const PORT = ServerConfig.PORT || 8080 ;
+
+app.listen(PORT,async () =>{
+    console.log(`succesfully started the server ${PORT}`);
 });
